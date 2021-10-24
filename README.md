@@ -77,9 +77,12 @@ In your tailwind.config.js file, configure the purge option with the paths to
 all of your components so Tailwind can tree-shake unused styles in production
 builds:
 
-- purge: [],
-
-* purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html']
+```base
+replace this empty purge
+ purge: [],
+to this
+ purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html']
+```
 
 # Include Tailwind in your CSS
 

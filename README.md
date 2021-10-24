@@ -1,70 +1,96 @@
-# Getting Started with Create React App
+# Install Tailwind CSS with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Creating your project
 
-## Available Scripts
+```base
+npx create-react-app my-project
+cd my-project
+```
 
-In the project directory, you can run:
+# Setting up Tailwind CSS
 
-### `npm start`
+Tailwind CSS requires Node.js 12.13.0 or higher.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# Install Tailwind via npm
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+`npm install -D tailwindcss@npm:@tailwindcss/postcss7-compat postcss@^7 autoprefixer@^9`
 
-### `npm test`
+# Install and configure CRACO
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Since Create React App doesn’t let you override the PostCSS configuration
+natively, we also need to install CRACO to be able to configure Tailwind:
 
-### `npm run build`
+`npm install @craco/craco`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# After Installed craco
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Once it’s installed, update your scripts in your package.json file to use craco
+instead of react-scripts for all scripts except eject:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+{
+    "scripts": {
 
-### `npm run eject`
+    replace these: [
+    "start": "react-scripts start",
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+     "build": "react-scripts build",
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+     "test": "react-scripts test",
+    ]
+    to these:
+     [
+    "start": "craco start",
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+     "build": "craco build",
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+     "test": "craco test"
+     ],
+      "eject": "react-scripts eject"
+    },
+  }
+```
 
-## Learn More
+# Next, create a craco.config.js at the root of our project and add the tailwindcss and autoprefixer as PostCSS plugins:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+// craco.config.js
+module.exports = {
+  style: {
+    postcss: {
+      plugins: [
+        require('tailwindcss'),
+        require('autoprefixer'),
+      ],
+    },
+  },
+}
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# Create your configuration file
 
-### Code Splitting
+`npx tailwindcss-cli@latest init`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+# Configure Tailwind to remove unused styles in production
 
-### Analyzing the Bundle Size
+In your tailwind.config.js file, configure the purge option with the paths to
+all of your components so Tailwind can tree-shake unused styles in production
+builds:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- purge: [],
 
-### Making a Progressive Web App
+* purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html']
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+# Include Tailwind in your CSS
 
-### Advanced Configuration
+Open the ./src/index.css for my case i'm creating global.css file that Create
+React App generates for you by default and use the @tailwind directive to
+include Tailwind’s base, components, and utilities styles, replacing the
+original file contents:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```base
+/* ./src/global.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```

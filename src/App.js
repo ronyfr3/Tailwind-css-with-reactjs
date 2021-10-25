@@ -1,25 +1,18 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { Route, Switch, useLocation } from 'react-router-dom';
-import getSearchResults from './api/SearchApi';
+import React from 'react';
+import { Route, Switch } from 'react-router-dom';
+import Footer from './components/footer/Footer';
 import Home from './pages/Home';
 import Service from './pages/Service';
 import './styles/main.css';
 
 const App = () => {
-  const dispatch = useDispatch();
-  let location = useLocation();
-  
-  useEffect(() => {
-    dispatch(getSearchResults());
-  }, [dispatch,location]);
-
   return (
-    <div>
+    <div className='flex flex-col items-center justify-between h-screen overflow-x-hidden'>
       <Switch>
         <Route exact path='/' component={Home} />
         <Route exact path='/service' component={Service} />
       </Switch>
+      <Footer/>
     </div>
   );
 };

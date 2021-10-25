@@ -1,18 +1,26 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-let query = "covid19"
-let startIndex = 0
-
 const getSearchResults = createAsyncThunk(
   'searchResults/getSearchResults',
   async () => {
     return fetch(
-      `https://www.googleapis.com/customsearch/v1?key=AIzaSyC_m52R0aFOf5Bg1Jto8BnExpS0PDvbEMU&cx=017576662512468239146:omuauf_lfve&q=${query}&start=${startIndex}`,
-      )
+      `https://google-search3.p.rapidapi.com/api/v1/search/q=${
+        localStorage.getItem('query') ? localStorage.getItem('query') : 'news'
+      }`,
+      {
+        method: 'GET',
+        headers: {
+          'x-user-agent': 'desktop',
+          'x-rapidapi-host': 'google-search3.p.rapidapi.com',
+          'x-rapidapi-key':
+            '339966592amsha238b38d42f34d0p11ec8ejsnde126bc24803',
+        },
+      },
+    )
       .then(async (response) => response.json())
       .catch((err) => {
         console.error(err);
       });
-    },
-    );
-    export default getSearchResults;
+  },
+);
+export default getSearchResults;

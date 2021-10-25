@@ -617,11 +617,6 @@ video {
   outline-offset: 2px;
 }
 
-.btn {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgba(229, 231, 235, var(--tw-ring-opacity));
-}
-
 .link {
   cursor: pointer;
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { CgMenuGridO } from 'react-icons/cg';
-import profile from '../../images/profile.png';
+import profile from '../../images/profile.jpg';
 
 const Header = () => (
   <header className='flex p-4 items-center justify-end text-sm text-gray-800 w-full'>

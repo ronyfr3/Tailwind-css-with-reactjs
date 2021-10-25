@@ -5,12 +5,12 @@ import Loading from '../Loading';
 
 const Results = () => {
   const { loading, results } = useSelector((state) => state.searchResults);
-  console.log(data);
+  // console.log(data);
 
   if (loading === 'true') return <Loading />;
 
   return (
-    <div className='p-8 sm:w-4/5'>
+    <div className='p-7 sm:w-4/5 w-full break-words'>
       {results?.total > 0 ? (
         <small className='text-gray-600 text-sm'>
           About {results?.total} results

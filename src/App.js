@@ -1,14 +1,27 @@
-import React from 'react';
-import Footer from './components/footer/Footer';
-import Header from './components/header/Header';
-import GoogleSearch from './components/search/GoogleSearch';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { Route, Switch, useLocation } from 'react-router-dom';
+import getSearchResults from './api/SearchApi';
+import Home from './pages/Home';
+import Service from './pages/Service';
+import './styles/main.css';
 
-const App = () => (
-  <div className='flex flex-col items-center justify-between h-screen'>
-    <Header />
-    <GoogleSearch />
-    <Footer />
-  </div>
-);
+const App = () => {
+  const dispatch = useDispatch();
+  let location = useLocation();
+  
+  useEffect(() => {
+    dispatch(getSearchResults());
+  }, [dispatch,location]);
+
+  return (
+    <div>
+      <Switch>
+        <Route exact path='/' component={Home} />
+        <Route exact path='/service' component={Service} />
+      </Switch>
+    </div>
+  );
+};
 
 export default App;

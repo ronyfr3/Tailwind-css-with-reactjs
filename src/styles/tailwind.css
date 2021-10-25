@@ -4,7 +4,7 @@
 
 @layer components {
   .btn {
-    @apply bg-gray-100 p-3 rounded-sm ring-gray-200 text-sm capitalize text-gray-800 focus:outline-none hover:shadow-sm;
+    @apply bg-gray-100 rounded-sm text-sm capitalize text-gray-800 focus:outline-none hover:shadow-sm;
   }
   .link {
     @apply hover:underline cursor-pointer;

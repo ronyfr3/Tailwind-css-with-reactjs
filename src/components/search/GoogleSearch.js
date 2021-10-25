@@ -25,10 +25,14 @@ const GoogleSearch = () => {
       />
       <div className='flex relative mt-5 hover:shadow-lg  focus-within:shadow-lg rounded-full border border-gray-200 items-center px-3 py-2 sm:w-3/6 w-full'>
         <SearchIcon className='h-4 mr-2.5 sm:mr-3 text-gray-400 cursor-pointer' />
-        <SearchInput search={search} setSearch={setSearch}/>
+        <SearchInput search={search} setSearch={setSearch} />
       </div>
       <div className='flex w-full justify-center mt-8 flex-row space-x-4'>
-        <button className='btn px-3 py-2' onClick={handleSearch}>
+        <button
+          className='btn px-3 py-2'
+          onClick={handleSearch}
+          disabled={!search && !search.length}
+        >
           google search
         </button>
         <button className='btn px-3 py-2'>i'm feeling lucky</button>

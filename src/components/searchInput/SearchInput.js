@@ -4,6 +4,7 @@ const SearchInput = ({search,setSearch}) => (
   <>
     <input
       type='text'
+      autoComplete="off"
       name='search'
       value={search}
       onChange={(e) => setSearch(e.target.value)}

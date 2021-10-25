@@ -6,7 +6,7 @@ const getSearchResults = createAsyncThunk(
     return fetch(
       `https://google-search3.p.rapidapi.com/api/v1/search/q=${
         localStorage.getItem('query') ? localStorage.getItem('query') : 'news'
-      }`,
+      }&num=100`,
       {
         method: 'GET',
         headers: {

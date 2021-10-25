@@ -4,7 +4,7 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 const Loading = () =>(
         <div className='relative'>
-            <div className='absolute top-20'>
+            <div className='absolute top-20 -left-10'>
             <Loader type="Circles" color="#47A1F1 " height={65} width={65} />
             </div>
         </div>
